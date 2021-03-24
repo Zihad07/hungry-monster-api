@@ -43,7 +43,7 @@ function getLowerCase(sentence) {
 }
 
 function updateDOM(html) {
-    mealList.innerHTML = HTML;
+    mealList.innerHTML = html;
     singleMealDetails.innerHTML = '';
 }
 
