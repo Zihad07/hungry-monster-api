@@ -42,13 +42,18 @@ function getLowerCase(sentence) {
     return sentence.toLocaleLowerCase();
 }
 
+function updateDOM(html) {
+    mealList.innerHTML = HTML;
+    singleMealDetails.innerHTML = '';
+}
+
 async function loadmealList(apiAddress, objDOM = null) {
 
     // Loading spinner before fetch Data.
     if (objDOM) {
         objDOM.innerHTML = spinnerHtml;
     }
-    console.log(apiAddress);
+    // console.log(apiAddress);
     const response = await fetch(apiAddress);
     const data = await response.json();
 
@@ -133,8 +138,7 @@ function loadSearchMeals(mealName) {
         // show error message
         if (!allMeal) {
             HTML += `<h3 class="text-danger">This is invalid meal name or category or area</h3>`
-            mealList.innerHTML = HTML;
-            singleMealDetails.innerHTML = '';
+            updateDOM(HTML);
             return;
         }
 
@@ -152,8 +156,7 @@ function loadSearchMeals(mealName) {
 
 
         // dom html updated.
-        mealList.innerHTML = HTML;
-        singleMealDetails.innerHTML = '';
+        updateDOM(HTML);
     })
 
 }
@@ -163,6 +166,6 @@ function loadSearchMeals(mealName) {
 
 // Event handler action
 searchBtn.addEventListener('click', function(e) {
-    console.log(searchFoodName);
+    // console.log(searchFoodName);
     loadSearchMeals(searchFoodName.value);
 });
